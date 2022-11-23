@@ -18,7 +18,15 @@ export default function UserProvider ({children}) {
     {session && getUser()}
 //   if(session) {getUser()} 
   },[session])
- 
+
+//   async function fetchFavoriteMovies(id = user.id) {
+//     //   const favResult = await axios.get(`https://api.themoviedb.org/3/account/${id}/favorite/movies?api_key=b1b8932c621313a29fd6d714a90f292e&session_id=23ed4c817dbba52339cec1f094031b9225da2fb9`);
+//     //   setFavoriteMovies(favResult.data.results)
+//     //   console.log(favResult)
+//     }
+//      useEffect(()=>{
+//      fetchFavoriteMovies()
+//     },[isFavorite])
 
 async function login (username, password) {
     const tokenRequest = await axios.get(`${baseUrl}/token/new?api_key=${apiKey}`)
