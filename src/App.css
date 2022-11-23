@@ -1,0 +1,399 @@
+
+
+body {
+  background-color: #0A0120;
+  position: relative;
+
+}
+ /* .header{
+  position: relative;
+ } */
+ 
+.color {
+  color : yellow
+}
+.noShow {
+  display : none;
+}
+.headerNav{
+  display : flex;
+  gap :120px;
+  padding-top : 1em;
+  background-color: inherit;
+  position: absolute;
+  top : 0;
+  z-index: 999; 
+  margin-left : 50px;
+}
+.headerLogo {
+  /* border : 1px solid white; */
+  /* padding : 4px 8px; */
+  font-weight: 900;
+  height: 35px;
+  color : yellow;
+}
+.headerLinks {
+  display : flex;
+  gap : 40px;
+  align-items : baseline;
+}
+.headerMenu ul  {
+  display : flex;
+  gap : 20px;
+  list-style : none;
+}
+.headerMenu ul li a {
+  text-decoration : none;
+  color : white;
+  transition :all .5s;
+}
+.headerMenu ul li a:hover {
+  color: rgb(0, 132, 255);
+}
+.headerSearch {
+  position: relative;
+}
+.headerSearch i {
+  position : absolute;
+  top : .5em;
+  left : .8em;
+  font-size: 1.3rem;
+  color : black;
+}
+.headerSearch input {
+  border-radius :  1.5em;
+  font-size: 0.9rem;
+  height: 3em;
+  width: 20em;
+  padding-left : 3em;
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: background-color 2s;
+}
+.headerSearch input:hover {
+  background-color: #ffffff;
+  color: black;
+}
+.searchBoxImage {
+  height: 50px;
+  width: 50px;
+  border-radius: 10px;
+}
+.searchBoxInfo {
+  width : 300px;
+  height : 250px;
+  overflow : auto;
+  border : 1px solid white;
+  border-radius: 15px;
+  background-color: azure;
+}
+.searchBoxItems {
+  display : flex;
+  gap : 15px;
+}
+.headerSign {
+  display : flex;
+  align-items : baseline;
+  gap : -3px;
+  color : white;
+}
+.headerSign span i {
+  font-size : 1.3rem ;
+  color : white;
+}
+.headerSign ul {
+  display : flex;
+  gap : 3px;
+  list-style : none;
+  padding-left: 1em;
+}
+.headerSign ul li a {
+  text-decoration : none;
+  color : white;
+  transition: all .5s;
+}
+.headerSign ul li a:hover {
+  color: rgb(0, 132, 255);
+}
+
+
+.headerSlider {
+
+
+}
+.headerSlider img {
+  height: 100vh;
+  width: 100%;
+}
+.headerSlider::before {
+  position: absolute;
+  content: "";
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(
+    rgba(11, 3, 54, 0.952),
+    rgba(1, 23, 70, 0.514),
+    rgba(0, 0, 0, 0.062),
+    rgba(0, 0, 0, 0.062),
+    rgba(0, 0, 0, 0.062),
+    rgba(0, 0, 0, 0.062),
+    rgba(10, 1, 32, 0.664)
+  );
+  z-index: 2;
+}
+.imgSliderInfo{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  bottom: 0em;
+  left: 0em;
+  width: 100%;
+  height: 35vh;
+  color : white;
+  background: linear-gradient(
+    rgba(11, 3, 58, 0),
+    rgba(10, 1, 32, 0.678),
+    rgb(10, 1, 32)
+  );
+}
+.imgSliderInfo h1 {
+  color: #ffffff;
+  display: flex;
+  font-size: 2.5rem;
+  font-weight: 600;
+  text-shadow: 5px 5px 6px #000000;
+  margin-bottom: 0;
+}
+.imgSliderInfo ul{
+  display: flex;
+  list-style: none;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2em;
+  padding-left: 0;
+}
+.imgSliderInfo ul li {
+  text-shadow: 5px 5px 6px #000000;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.imgSliderInfo ul li:first-child {
+  background-color: #a17bff;
+  padding: 0.1em 0.3em;
+  border-radius: 0.5em;
+}
+.imgSliderInfo ul li:nth-child(2) i {
+  color: yellow;
+}
+.headerBottom ul{
+  display: flex;
+  gap :  15px;
+  margin-left: 25px;
+}
+.headerBottom ul li {
+  border : 1px solid red;
+  border-radius: 25px;
+  padding:1em;
+}
+.headerBottom ul li a {
+  text-decoration: none;
+}
+
+
+.mainMT {
+  margin-top: 100px;
+}
+.mainMT h1 {
+  color : white;
+  margin-left: 25px;
+  text-decoration: solid;
+}
+.mainMT ul {
+ display : flex;
+ gap : 15px;
+ flex-wrap : wrap;
+ list-style : none;
+ margin-top: 10px;
+ color: white;
+}
+.mainMT ul a {
+  text-decoration: none;
+  color : white;
+}
+.mainMT ul li {
+  position: relative;
+  text-align:center ;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0.5em;
+  margin-top: 1.5em;
+  border-radius: 10px;
+  transform: scale(1, 1);
+  transition: transform 2s;
+}
+.mainMT ul li:hover {
+  border-radius: 10px;
+  border : 2px solid white;
+  background-color: #170348;
+  transform: scale(1.13, 1.1);
+}
+.mainMT li img {
+  border-radius: 5px;
+}
+.mainMTHD {
+  position: absolute;
+  top : 5px;
+  right : 10px;
+  border : 1px solid white;
+  background-color: black;
+  color : white;
+  padding : 3px 9px;
+  border-radius: 3px;
+  font-weight: bold;
+}
+.mainMTinfo {
+  border : 1px solid white;
+  border-radius: 5px;
+  padding : 1px 4px;
+}
+.mainMT ul li div:last-child p {
+  display: flex;
+  gap : 10px;
+  margin-left: 30px;
+  color : rgba(240, 248, 255, 0.585);
+}
+
+
+
+
+
+.login {
+  background: linear-gradient(
+    rgb(11, 3, 58),
+    rgba(10, 1, 32, 0.902),
+    rgb(10, 1, 32),
+    rgb(6, 1, 20)
+  );
+  position: absolute;
+  top:0;
+  z-index: 99;
+  width: 100vw;
+  height: 100vh;
+}
+.formLogin {
+  display : flex;
+  flex-direction: column;
+  gap : 25px;
+  width: 20%;
+  margin :10em auto 0;
+
+}
+.formLogin input {
+  padding : 15px;
+  border-radius: 1em;
+  background-color: #2b0982;
+  color : white;
+  border : 1px solid rgb(4, 6, 88);
+}
+.logout {
+  width: 20%;
+  margin-left : 45.5em;
+  margin-top : .5em;
+  padding : 15px;
+  border-radius: 1em;
+  background-color: #2b0982;
+  color : white;
+  border : 1px solid rgb(4, 6, 88);
+}
+
+
+
+
+
+.singlePage {
+  /* margin-top : 100px; */
+  color : white;
+  /* margin-left: 25px; */
+  background-attachment: fixed;
+  height: 700px;
+  margin-bottom: 250px;
+}
+.opaCity {
+  display : flex;
+  justify-content:flex-start ;
+  background-color: #0b031dee;
+  width : 100%;
+  height: 100%;
+  background: linear-gradient( to left ,
+    rgb(11, 3, 58),
+    rgba(10, 1, 32, 0.902),
+    rgba(10, 1, 32, 0.902),
+    rgba(10, 1, 32, 0.902),
+    rgb(10, 1, 32),
+    rgb(6, 1, 20,.98)
+  );
+  padding-top: 150px;
+}
+.singlePageLeft {
+  width: 20%;
+  padding-left: 25px;
+}
+.singlePage button {
+  background-color: #170348;
+  color : white;
+  padding : 20px;
+  border : none;
+  border-radius: 8px;
+  margin-top: 10px;
+  width: 80%;
+  cursor: pointer;
+}
+/* .singlePage button:indeterminate {
+  color : yellow;
+} */
+.singlePage img {
+  width: 80%;
+  height: 300px;
+  border-radius: 5px;
+}
+.singlePageRight {
+  width: 80%;
+  margin-right: 30px;
+}
+.singlePageTrailer {
+  display: flex;
+  gap :10px;
+}
+.singlePageSimilar {
+  display : flex;
+  gap:2px;
+  list-style: none;
+}
+
+
+
+.page {
+  display: flex;
+  gap: 100px;
+}
+
+
+
+
+.profile {
+  margin: 150px 50px;
+  color : white;
+}
+
+
+
+
+
+
+.footer {
+  height: 200px;
+  background-color: #a17bff;
+}
