@@ -3,21 +3,22 @@
 import React from 'react'
 import { useEffect } from 'react'
 import axios from 'axios'
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import Movie from './items/Movie';
 import Tv from './items/Tv';
 import People from './items/People';
+import { UserContext } from './UserContext';
 
-const apiKey = 'b1b8932c621313a29fd6d714a90f292e'
 
 function SearchBox() {
+
   const[txt, setTxt]=useState('')
   const[resultSearch, setResultSearch]=useState([])
-
+  const {apiKey, baseUrl} = useContext(UserContext)
   useEffect(() => {
     const timeout = setTimeout(async () => {
       if (txt) {
-        const {data} = await axios.get( `https://api.themoviedb.org/3/search/multi?api_key=${apiKey}&query=${txt}` ) 
+        const {data} = await axios.get( `${baseUrl}/search/multi?api_key=${apiKey}&query=${txt}`) 
         setResultSearch(data.results);
       } else {
         setResultSearch([]);
@@ -28,28 +29,24 @@ function SearchBox() {
     };
   }, [txt]);
 
-  const handleClick = () => {
-    console.log(resultSearch)
-  }
-
   function showItems(item) {
+    console.log(item)
       switch (item.media_type)
       {
         case 'movie' :
-           return <Movie key={item.id} item={item} />
-        case 'movie' : 
-           return <Tv key={item.id} item={item} />
-        case 'movie' : 
-           return <People key={item.id} item={item} />
-      }
-  }
+           return <Movie  item={item} />
+        case 'tv' : 
+           return <Tv  item={item} />
+        case 'person' : 
+           return <People  item={item} />
+      }}
 
   return (
     <>
-         <i className="fa fa-search"  onClick={handleClick}></i>
+         <i className="fa fa-search" ></i>
          <input 
          type='search' 
-         placeholder='Enter your keywords' 
+         placeholder='Search for a movie, tv show, person...' 
          value={txt} 
          onChange={ e => setTxt(e.target.value) } 
           />
@@ -57,7 +54,9 @@ function SearchBox() {
           {
             resultSearch.map( res => {
                  return (
-                    showItems(res)
+                    <div onClick={()=>{setTxt('')}} >
+                        {showItems(res)}
+                    </div>
                  )
             })
           }  

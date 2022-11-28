@@ -19,8 +19,8 @@
            {
                 movies.splice(0, 12).map( (movie) =>{
                   return (
-                  <Link to={`/singlePage/${movie.id}`}>
-                  <li key={movie.id}>
+                  <Link to={`/singlePage/${movie.id}`}  key={movie.id}>
+                  <li >
                           <div>
                            <img
                             src={`https://www.themoviedb.org/t/p/w220_and_h330_face${movie.poster_path}`} 

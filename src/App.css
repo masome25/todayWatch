@@ -3,33 +3,30 @@
 body {
   background-color: #0A0120;
   position: relative;
-
 }
- /* .header{
-  position: relative;
- } */
- 
+
 .color {
   color : yellow
 }
 .noShow {
   display : none;
 }
+
 .headerNav{
   display : flex;
-  gap :120px;
+  align-items: baseline;
+  gap :11em;
   padding-top : 1em;
-  background-color: inherit;
   position: absolute;
   top : 0;
-  z-index: 999; 
-  margin-left : 50px;
+  z-index: 999;
+  margin-left : 100px;
 }
 .headerLogo {
-  /* border : 1px solid white; */
-  /* padding : 4px 8px; */
   font-weight: 900;
-  height: 35px;
+  font-style: italic;
+  font-family: serif;
+  font-size: 23px;
   color : yellow;
 }
 .headerLinks {
@@ -39,13 +36,14 @@ body {
 }
 .headerMenu ul  {
   display : flex;
-  gap : 20px;
+  gap : 25px;
   list-style : none;
 }
 .headerMenu ul li a {
   text-decoration : none;
   color : white;
-  transition :all .5s;
+  transition :all .8s;
+  font-weight: bold;
 }
 .headerMenu ul li a:hover {
   color: rgb(0, 132, 255);
@@ -55,10 +53,10 @@ body {
 }
 .headerSearch i {
   position : absolute;
-  top : .5em;
+  top : .6em;
   left : .8em;
   font-size: 1.3rem;
-  color : black;
+  color : yellow;
 }
 .headerSearch input {
   border-radius :  1.5em;
@@ -69,14 +67,13 @@ body {
   background-color: rgba(255, 255, 255, 0.1);
   transition: background-color 2s;
 }
-.headerSearch input:hover {
-  background-color: #ffffff;
-  color: black;
+.headerSearch input:focus {
+  background-color: #ffffffae;
+  color: rgb(10, 9, 108);
+  font-weight: 800;
 }
-.searchBoxImage {
-  height: 50px;
-  width: 50px;
-  border-radius: 10px;
+.headerSearch:hover i {
+  color :#28077b;
 }
 .searchBoxInfo {
   width : 300px;
@@ -84,42 +81,93 @@ body {
   overflow : auto;
   border : 1px solid white;
   border-radius: 15px;
-  background-color: azure;
+  background-color: #ffffffae;
 }
 .searchBoxItems {
   display : flex;
-  gap : 15px;
+  gap : 10px;
+  text-decoration: none;
+  color : rgb(10, 9, 108);
+  font-weight: bolder;
+  font-size: 13px;
+  font-style: italic;
+  margin-top: 3px;
+}
+.searchBoxItems img {
+  height: 50px;
+  width: 50px;
+  border-radius: 15px;
+}
+.searchBoxItems span:last-child {
+  color : yellow;
+  opacity: .5;
 }
 .headerSign {
   display : flex;
+  gap : .8em;
   align-items : baseline;
-  gap : -3px;
+  font-weight: bold;
   color : white;
 }
-.headerSign span i {
+.headerSign  i {
   font-size : 1.3rem ;
-  color : white;
 }
-.headerSign ul {
-  display : flex;
-  gap : 3px;
-  list-style : none;
-  padding-left: 1em;
-}
-.headerSign ul li a {
+.headerSign a {
   text-decoration : none;
   color : white;
   transition: all .5s;
 }
-.headerSign ul li a:hover {
+.headerSign  a:hover {
   color: rgb(0, 132, 255);
 }
-
-
-.headerSlider {
-
-
+.headerSign button {
+  color : white;
+  margin-left : .7em;
+  transition : all .5s;
+  background-color: inherit;
+  border : none;
 }
+.headerSign button:hover {
+  color:  rgb(0, 132, 255);
+}
+
+
+
+.login {
+  background: linear-gradient(
+    rgb(11, 3, 58),
+    rgba(10, 1, 32, 0.902),
+    rgb(10, 1, 32),
+    rgb(6, 1, 20)
+  );
+  position: absolute;
+  top:0;
+  z-index: 99;
+  width: 100vw;
+  height: 100vh;
+}
+.formLogin {
+  display : flex;
+  flex-direction: column;
+  gap : 25px;
+  width: 20%;
+  margin :13em auto 0;
+}
+.formLogin input {
+  padding : 15px;
+  border-radius: 1em;
+  background-color: #2b0982;
+  color : white;
+  border : 1px solid rgb(4, 6, 88);
+}
+.login p {
+  color : red;
+  margin : -1.5em 1em;
+}
+
+
+
+
 .headerSlider img {
   height: 100vh;
   width: 100%;
@@ -270,45 +318,6 @@ body {
 
 
 
-.login {
-  background: linear-gradient(
-    rgb(11, 3, 58),
-    rgba(10, 1, 32, 0.902),
-    rgb(10, 1, 32),
-    rgb(6, 1, 20)
-  );
-  position: absolute;
-  top:0;
-  z-index: 99;
-  width: 100vw;
-  height: 100vh;
-}
-.formLogin {
-  display : flex;
-  flex-direction: column;
-  gap : 25px;
-  width: 20%;
-  margin :10em auto 0;
-
-}
-.formLogin input {
-  padding : 15px;
-  border-radius: 1em;
-  background-color: #2b0982;
-  color : white;
-  border : 1px solid rgb(4, 6, 88);
-}
-.logout {
-  width: 20%;
-  margin-left : 45.5em;
-  margin-top : .5em;
-  padding : 15px;
-  border-radius: 1em;
-  background-color: #2b0982;
-  color : white;
-  border : 1px solid rgb(4, 6, 88);
-}
-
 
 
 
@@ -380,17 +389,30 @@ body {
 
 
 
-.page {
-  display: flex;
-  gap: 100px;
-}
+
 
 
 
 
 .profile {
-  margin: 150px 50px;
+  /* margin-left: 50px; */
   color : white;
+  background: linear-gradient(
+    rgb(11, 3, 58),
+    rgba(10, 1, 32, 0.94),
+    rgb(10, 1, 32),
+    rgb(6, 1, 20)
+  );
+  position: absolute;
+  top:0;
+  z-index: 99;
+  width: 100vw;
+  height: 100vh;
+}
+.profile img {
+  margin-top: 150px ;
+  margin-left: 50px;
+  border-radius: 50%;
 }
 
 

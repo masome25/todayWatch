@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import MoviesList from "./components/MoviesList";
-import Pages from "./components/Pages";
+
 import TvList from "./components/TvList";
 import Login from './components/Login';
 import Movie from "./components/items/Movie";
@@ -11,14 +11,19 @@ import Profile from "./components/Profile";
 import HeaderSlider from "./components/HeaderSlider";
 import HeaderTop from "./components/HeaderTop";
 import HeaderBottom from "./components/HeaderBottom";
-import Header from "./components/Header";
+import UserProvider from "./components/UserContext";
+
 
 
 const router = createBrowserRouter (
     [
         {
             
-            element : <App />,
+          element: (
+            <UserProvider>
+              <App />
+            </UserProvider>
+          ),
             children :  [
 
               {
@@ -40,18 +45,18 @@ const router = createBrowserRouter (
                   </>,
                 ]
               },
-              
-                // {
-                //     path :'/login',
-                //     element : <Login />
-                // },
                 {
                     path :'/singlePage/:id',
                     element : <SinglePage />
                 },
                 {
                     path :'/profile',
-                    element : <Profile />
+                    element : [
+                      <>
+                          <HeaderSlider /> 
+                          <Profile />
+                      </> 
+                    ]
                 }
 
             ]

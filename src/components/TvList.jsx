@@ -12,7 +12,6 @@ function TvList() {
   async function getTv () {
      const {data} = await axios.get('https://api.themoviedb.org/3/tv/popular?api_key=b1b8932c621313a29fd6d714a90f292e')
      setFilms(data.results)
-     console.log(data)
   }
   useEffect(() => {getTv()}, [])
   
@@ -25,8 +24,8 @@ function TvList() {
             {
             
               return (
-                <Link to={`/singlePage/${film.id}`}>
-                <li key={film.id}>
+                <Link to={`/singlePage/${film.id}`}  key={film.id}>
+                <li>
                     <div>
                        <img
                         src={`https://www.themoviedb.org/t/p/w220_and_h330_face${film.poster_path}`} 

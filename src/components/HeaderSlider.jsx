@@ -5,10 +5,10 @@ import HeaderBottom from './HeaderBottom';
 
 function HeaderSlider () {
     return (
-      <div className= 'headerSlider' >
+      <div className= 'headerSlider' 
+      >
  <Swiper
        modules = {[Autoplay]}
-       
        spaceBetween = {0}
        slidesPerView={1}
        autoplay={{delay: 2000}}

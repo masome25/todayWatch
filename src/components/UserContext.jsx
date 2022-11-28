@@ -1,57 +1,82 @@
+
+
 import axios from "axios"
 import { createContext, useState, useEffect } from "react"
+import { useLocation, useNavigate } from "react-router-dom";
 
-const apiKey = 'b1b8932c621313a29fd6d714a90f292e'
-const baseUrl = 'https://api.themoviedb.org/3/authentication'
+
+
 export const UserContext = createContext()
 
-
 export default function UserProvider ({children}) {
-    const[user, setUser] = useState(null)
-    const[session, setSession]=useState(()=> localStorage.getItem('session'))
+    const apiKey = 'b1b8932c621313a29fd6d714a90f292e'
+    const baseUrl = 'https://api.themoviedb.org/3/'
+    const imgUrl = 'https://www.themoviedb.org/t/p/w220_and_h330_face'
+    const [user, setUser] = useState(null)
+    const [okyLogin, setOkyLogin] = useState(true)
+    const [session, setSession]=useState(()=> localStorage.getItem('session'))
+    const [favoriteMovies, setFavoriteMovies] = useState([])
+    const location = useLocation()
+    const navigate = useNavigate()
 
   async function getUser() {
-    const {data} = await axios.get(`https://api.themoviedb.org/3/account?api_key=${apiKey}&session_id=${session}`)
+    const {data} = await axios.get(`${baseUrl}/account?api_key=${apiKey}&session_id=${session}`)
     setUser(data)
   }
   useEffect(() => {
-    {session && getUser()}
-//   if(session) {getUser()} 
+    if(session){
+      localStorage.setItem("session", session)
+      getUser()
+      if (location.pathname === "/login") {
+        navigate("/profile", { replace: true });
+      }
+    }
   },[session])
+  console.log(user) 
 
-//   async function fetchFavoriteMovies(id = user.id) {
-//     //   const favResult = await axios.get(`https://api.themoviedb.org/3/account/${id}/favorite/movies?api_key=b1b8932c621313a29fd6d714a90f292e&session_id=23ed4c817dbba52339cec1f094031b9225da2fb9`);
-//     //   setFavoriteMovies(favResult.data.results)
-//     //   console.log(favResult)
-//     }
-//      useEffect(()=>{
-//      fetchFavoriteMovies()
-//     },[isFavorite])
-
-async function login (username, password) {
-    const tokenRequest = await axios.get(`${baseUrl}/token/new?api_key=${apiKey}`)
-    const authorize = await axios.post(`${baseUrl}/token/validate_with_login?api_key=${apiKey}`, {
-        username ,
-        password ,
-        request_token : tokenRequest.data.request_token
-    })
-    const sessionId = await axios.post(`${baseUrl}/session/new?api_key=${apiKey}`, {
-        request_token : authorize.data.request_token
-    })
+  async function login (username, password) {
      
-    setSession(sessionId.data.session_id)
-    localStorage.setItem('session', session)
-}
+    try {
+      const tokenRequest = await axios.get(`${baseUrl}/authentication/token/new?api_key=${apiKey}`)
+      const authorize = await axios.post(`${baseUrl}/authentication/token/validate_with_login?api_key=${apiKey}`, {
+          username ,
+          password ,
+          request_token : tokenRequest.data.request_token
+      })
+      const sessionId = await axios.post(`${baseUrl}/authentication/session/new?api_key=${apiKey}`, {
+          request_token : tokenRequest.data.request_token
+      })
+      setSession(sessionId.data.session_id) 
+    }
+    catch {
+      setOkyLogin(false)
+    }
+  }
 
+  
  function logout () {
-    setUser(null)
-    setSession(() => {localStorage.setItem('session' , null)})
+    setUser({});
+    setSession(null);
+    localStorage.clear();
  }
 
-    return(
-        <UserContext.Provider value={{login, user, logout}}>
-            {children}
-        </UserContext.Provider>
+ return(
+   <UserContext.Provider 
+      value={{
+        login, 
+        user,
+        session, 
+        logout, 
+        favoriteMovies, 
+        setFavoriteMovies, 
+        apiKey, 
+        baseUrl, 
+        imgUrl,
+        okyLogin
+        }}
+     >
+     {children}
+   </UserContext.Provider>
     )
 }
 

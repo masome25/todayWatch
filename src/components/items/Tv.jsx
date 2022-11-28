@@ -1,21 +1,19 @@
 
 
-
 import React from 'react'
 import { Link } from 'react-router-dom'
-
-
+import { useContext } from 'react';
+import { UserContext } from './../UserContext';
 
 function Tv({item}) {
+  const {imgUrl} = useContext(UserContext)
   return (
-    <Link to={`/singlePage/${item.id}`}>
-         <div className='searchBoxItems'>
-        <img
-          className='searchBoxImage'
-          src={`https://www.themoviedb.org/t/p/w220_and_h330_face/${item.poster_path}`}
-        />
-        <p>{item.name}</p>r
-    </div>
+    <Link to={`/singlePage/${item.id}`} className='searchBoxItems' >
+         <img  src={item.poster_path ?  `${imgUrl}/${item.poster_path}` : '/image/movie_default.jpg'}  />
+      <div>
+         <span>{item.name}</span><br/>
+         <span>{item.media_type}</span>
+      </div>
     </Link>
   )
 }
