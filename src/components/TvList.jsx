@@ -1,19 +1,22 @@
 
 
-import React, { useEffect , useState} from 'react'
+import React, { useEffect , useState, useContext} from 'react'
 import axios from 'axios'
-import { Link } from "react-router-dom";
+import { UserContext } from './UserContext';
+import Card from './Card';
 
 
 function TvList() {
-
+  const {apiKey, baseUrl} = useContext(UserContext)
   const [films, setFilms] = useState([])
 
   async function getTv () {
-     const {data} = await axios.get('https://api.themoviedb.org/3/tv/popular?api_key=b1b8932c621313a29fd6d714a90f292e')
+     const {data} = await axios.get(`${baseUrl}tv/popular?api_key=${apiKey}`)
      setFilms(data.results)
   }
-  useEffect(() => {getTv()}, [])
+  useEffect(() => {
+    getTv()
+  }, [])
   
   return (
     <div className='mainMT'>
@@ -21,26 +24,9 @@ function TvList() {
        <ul>
        {
             films.splice(0, 12).map( film =>
-            {
-            
-              return (
-                <Link to={`/singlePage/${film.id}`}  key={film.id}>
-                <li>
-                    <div>
-                       <img
-                        src={`https://www.themoviedb.org/t/p/w220_and_h330_face${film.poster_path}`} 
-                        />
-                        <span className='mainMTHD'>HD</span>
-                     </div>
-                     <div>
-                       <h4>  {film.original_name} </h4>
-                       <p> 2022 . 94 min<span className='mainMTinfo'> Tv </span></p>
-                     </div>    
-                  </li>
-                </Link>
-              )
-                   
-           }
+
+               <Card item={film} key={film.id} />        
+           
          )
        }
        

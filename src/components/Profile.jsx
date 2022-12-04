@@ -1,34 +1,54 @@
 
 
-
 import React from 'react'
+import { Link } from "react-router-dom";
 import { UserContext } from './UserContext'
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
 
 
 function Profile() {
-  const {user, favoriteMovies, setFavoriteMovies } = useContext(UserContext)
+  const {user, favoriteMovies, fetchFavoriteMovies, imgUrl} = useContext(UserContext)
+  const [show, setShow] = useState(false)
+
+  function handleClick () {
+     setShow(!show)
+  }
+  useEffect(()=>{
+    if (user) {
+      fetchFavoriteMovies()
+    }
+  }, [])
+
+
   return (
-    <div className='profile'>
-        <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQIV1ppwChzluddwMfC-9jCDE7uSri4SAqhw&usqp=CAU'/>
-        <h1>MasOme EhsAniMehr</h1>
-        <p>List Watching Movies : </p>
-        <ul>
+   <div className='profile'>
+    <div className='profileLeft'> 
+        <img src='/image/images.png' />
+        {user && <h1>{user.username}<button onClick={handleClick}> <i className='fa fa-heart'></i> </button>
+        </h1> }
+       
+    </div>  
+    <div className='profileRight'>
+        <ul className={show ? '' : 'noShow'} >
           {
-            favoriteMovies.map((e)=>{
-               return (
-              <li key={e.id}>
-                 {e.original_title}
-              </li>
-            ) 
-            {/* console.log(favResult) */}
-            }
-           
-             
-            )
-          }
+            favoriteMovies.map( movie =>
+              <li key={movie.id}>
+              <img src={`${imgUrl}${movie.poster_path}`} />
+              <Link to={`/singlePage/${movie.id}`} >
+                 {movie.original_title} 
+                 </Link>
+              </li>  
+            )}
         </ul>
-    </div>
+        <div className='profileRange'>
+               {/* <div>1</div>
+               <div>2</div> */}
+               {/* <input type='range' />
+               <input type='range' /> */}
+
+        </div>
+    </div>   
+   </div>
   )
 }
 
